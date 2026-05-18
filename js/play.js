@@ -1,8 +1,29 @@
+$(document).ready(function() {
+	let url = new URL(window.location.href);
+	let seed = url.searchParams.get("seed");
+	if (seed) {
+		$("#intro-screen").addClass("wants-to-play-seed");
+		$("#seed-input").val(seed);
+	}
+});
+
+
 // Game data
 class PlateGame {
-	constructor(kind, seed) {
+	constructor(kind, seedInput) {
 		this.kind = kind;
-		this.seed = seed(seed);
+
+		this.startTime = new Date();
+		if (seedInput) {
+			this.seedInput = seedInput;
+			let customSeed = new Math.seedrandom(seedInput);
+			this.seed = customSeed(customSeed);
+		} else {
+			let daysSinceEpoch = Math.floor(this.startTime / 86400000);
+			this.seedInput = daysSinceEpoch;
+			let todaySeed = new Math.seedrandom(daysSinceEpoch);
+			this.seed = todaySeed(todaySeed);
+		}
 
 		this.word = wordList[Math.floor(this.seed * wordList.length)];
 		this.plate = plateList[Math.floor(this.seed * plateList.length)];
@@ -112,38 +133,21 @@ function wrapup() {
 	changeScreen("end");
 }
 
-
-// Start game from today's plate
-$("#today-intro-btn").click(function() {
-	var now = new Date();
-	var daysSinceEpoch = Math.floor(now / 86400000);
-	var todaySeed = new Math.seedrandom(daysSinceEpoch);
-	Game = new PlateGame("daily", todaySeed);
-
-	startGameFrontEnd();
-	changeScreen("game");
-});
-
-$("#seed-intro-btn").click(function() {
-	$("#intro-screen").addClass("wants-to-play-seed");
-	$("#seed-input").val("");
-	$("#seed-input").focus();
-});
-
-$("#back-btn").click(function() {
+function resetIntro() {
 	$("#intro-screen").removeClass("wants-to-play-seed");
-});
+	$("#seed-input").val("");
 
-// Start game from seeded plate
-$("#play-seed-btn").click(function() {
-	if ($("#seed-input").val().length > 0) {
-		var seedInput = $("#seed-input").val();
-		var customSeed = new Math.seedrandom(seedInput);
-		Game = new PlateGame("seeded", customSeed);
+	// Remove seed from URL
+	const url = new URL(window.location.href);
+	url.searchParams.delete("seed");
+	history.replaceState(null, "", url.toString());
+}
 
-		startGameFrontEnd(customSeed);
-		changeScreen("game");
-	}
+
+// Seed input
+$("#seed-input").on("propertychange input", function() {
+	let strictAscii = $(this).val().replace(/['"\x80-\uFFFF]/g, "");
+	$(this).val(strictAscii);
 });
 
 
@@ -174,19 +178,6 @@ function submitWord() {
 	}
 }
 
-$("#submit-btn").click(() => submitWord());
-
-
-// Keyboard controls
-$(document).keydown(function(e) {
-	if (e.keyCode === 13) submitWord();
-	// if (e.keyCode === 9) {
-	// 	e.preventDefault();
-	// 	$(".plate-number svg").replaceWith(`<div class="plate-divider"></div>`);
-	// 	startGame(Math.random());
-	// }
-});
-
 
 // Function to add score message in score container
 function addScore(e) {
@@ -199,27 +190,94 @@ function addScore(e) {
 }
 
 
-// Cancel button
+// Buttons
+$("#today-intro-btn").click(function() {
+	Game = new PlateGame("daily");
+	startGameFrontEnd();
+	changeScreen("game");
+});
+
+$("#seed-intro-btn").click(function() {
+	$("#intro-screen").addClass("wants-to-play-seed");
+	$("#seed-input").val("");
+	$("#seed-input").focus();
+});
+
+$("#back-btn").click(function() {
+	resetIntro();
+});
+
+$("#play-seed-btn").click(function() {
+	if ($("#seed-input").val().length > 0) {
+		let customSeedInput = $("#seed-input").val();
+		Game = new PlateGame("seeded", customSeedInput);
+
+		// Embed seed in URL
+		let url = new URL(window.location.href);
+		url.searchParams.set("seed", customSeedInput);
+		history.replaceState(null, "", url.toString());
+
+		startGameFrontEnd();
+		changeScreen("game");
+	}
+});
+
+$("#submit-btn").click(() => submitWord());
+
 $("#cancel-circle-btn").click(function() {
 	Game.destroyTimer();
+	resetIntro();
 	changeScreen("intro");
 });
 
-
-// End buttons
 $("#play-again-btn").click(function() {
+	resetIntro();
 	changeScreen("intro");
 });
 
+var copyResultsTimeout;
+var copyBtnHtml = $("#share-btn").html();
 $("#copy-results-btn").click(function() {
-	let kind = (Game.kind == "daily") ? "📅 Today's" : "🌱 Seeded";
+	let $this = $(this);
+	let kind = (Game.kind == "daily") ? "Today's" : "Seeded";
 
-	let today = new Date();
-	let formattedDate = `${today.getFullYear()}/${String(today.getMonth() + 1).padStart(2, "0")}/${String(today.getDate()).padStart(2, "0")}`;
-	let dateString = (Game.kind == "daily") ? formattedDate + " – " : "";
+	let formattedDate = `${Game.startTime.getFullYear()}/${String(Game.startTime.getMonth() + 1).padStart(2, "0")}/${String(Game.startTime.getDate()).padStart(2, "0")}`;
+	let descriptor = (Game.kind == "daily") ?  `📅 ${formattedDate}` : `🌱 "${Game.seedInput}"`;
 
 	navigator.clipboard.writeText(`${kind} Plate Game
-${dateString}${Game.plateNumber}
+${descriptor} → [ ${Game.plateNumber} ]
 Found ${Game.correctGuesses.length} word${(Game.correctGuesses.length == 1) ? "" : "s"}
 Scored ${Game.score} point${(Game.score == 1) ? "" : "s"}`);
+	
+	$this.html("Results Copied!");
+	clearTimeout(copyResultsTimeout);
+	copyResultsTimeout = setTimeout(function() {
+		$this.html(`<i class="fa-regular fa-clipboard"></i>Copy Results`);
+	}, 1000);
+});
+
+var copyLinkTimeout;
+var shareBtnHtml = $("#share-btn").html();
+$("#share-btn").click(function() {
+	let $this = $(this);
+
+	let url = new URL(window.location.href);
+	navigator.clipboard.writeText(url);
+	
+	$this.html("Link Copied!");
+	clearTimeout(copyLinkTimeout);
+	copyLinkTimeout = setTimeout(function() {
+		$this.html(shareBtnHtml);
+	}, 1000);
+});
+
+
+// Keyboard controls
+$(document).keydown(function(e) {
+	if (e.keyCode === 13) submitWord();
+	// if (e.keyCode === 9) {
+	// 	e.preventDefault();
+	// 	$(".plate-number svg").replaceWith(`<div class="plate-divider"></div>`);
+	// 	startGame(Math.random());
+	// }
 });
