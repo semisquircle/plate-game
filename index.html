@@ -22,96 +22,31 @@
 </head>
 
 <body>
-	<div class="car-background"></div>
+	<!-- Intro screen -->
+	<div class="screen current-screen" id="intro-screen">
+		<div class="intro-wrapper">
+			<div class="welcome">
+				<div class="big-text">
+					<div>PLATE</div>
+					<div>PLATE</div>
+				</div>
 
-	<main>
-		<div class="game-content">
-			<div class="license-plate">
-				<img class="plate-background">
-	
-				<div class="plate-number">
-					<div class="plate-chars1"></div>
-					<div class="plate-divider"></div>
-					<div class="plate-chars2"></div>
+				<div id="welcome-icon">*</div>
+
+				<div class="big-text">
+					<div>GAME</div>
+					<div>GAME</div>
 				</div>
 			</div>
-		
-			<input class="word-input" type="text" placeholder="What words can you find?" autocomplete="off">
-		
-			<button class="submit-btn special-hover" tabindex="-1">
-				<i class="fas fa-car"></i>
-				<div>DRIVE!</div>
-				<div class="kbd">Enter</div>
-			</button>
-			<!-- <button class="btn skip-btn" tabindex="-1"><i class="fas fa-truck"></i>Pass!<kbd>Tab</kbd></button>
-			<button class="btn stop-btn" tabindex="-1"><i class="fas fa-car-crash"></i>Crash!<kbd>Esc</kbd></button> -->
-		
-			<div class="score-container big-text">
-				<div><span class="score-amount">0</span> points</div>
-				<div><span class="score-amount">0</span> points</div>
-			</div>
-		
-			<div class="timer-container big-text">
-				<div><span class="time-left"></span> seconds</div>
-				<div><span class="time-left"></span> seconds</div>
-			</div>
-		
-			<a class="circle-btn search-link special-hover" href="search.html"><i class="fas fa-search"></i></a>
-		</div>
-	
 
-
-		<div class="keyboard">
-			<button class="drive-btn-mobile"><i class="fas fa-car-side"></i>Drive!</button>
-			<div class="key-row">
-				<button class="key">Q</button>
-				<button class="key">W</button>
-				<button class="key">E</button>
-				<button class="key">R</button>
-				<button class="key">T</button>
-				<button class="key">Y</button>
-				<button class="key">U</button>
-				<button class="key">I</button>
-				<button class="key">O</button>
-				<button class="key">P</button>
-			</div>
-			<div class="key-row">
-				<button class="key">A</button>
-				<button class="key">S</button>
-				<button class="key">D</button>
-				<button class="key">F</button>
-				<button class="key">G</button>
-				<button class="key">H</button>
-				<button class="key">J</button>
-				<button class="key">K</button>
-				<button class="key">L</button>
-			</div>
-			<div class="key-row">
-				<button class="key special-key"><i class="fas fa-trash-alt"></i></button>
-				<button class="key">Z</button>
-				<button class="key">X</button>
-				<button class="key">C</button>
-				<button class="key">V</button>
-				<button class="key">B</button>
-				<button class="key">N</button>
-				<button class="key">M</button>
-				<button class="key special-key delete-key"><i class="fas fa-backspace"></i></button>
-			</div>
-		</div>
-	
-
-
-		<div class="intro-container show">
-			<div class="intro-wrapper">
-				<div class="welcome big-text">
-					<div>{&nbsp;&nbsp;Plate Game&nbsp;&nbsp;}</div>
-					<div>{&nbsp;&nbsp;Plate Game&nbsp;&nbsp;}</div>
-				</div>
-	
-				<div class="intro-description-container">
-					<div class="how-to-play">HOW TO PLAY</div>
+			<div class="intro-description">
+				<div class="intro-how-to-play-container">
+					<div class="intro-header">HOW TO PLAY</div>
 		
-					<div class="intro-middle-container">A license plate number will be generated containing a three letter sequence.<br>You will have sixty seconds to guess as many words that relate to the sequence in the following way:</div>
+					<div class="intro-middle-container">
+						A license plate number will be generated containing a <b>three-letter sequence</b>.<br>
+						You will have <b>60 seconds</b> to guess as many words that relate to the sequence in the following way:
+					</div>
 			
 					<div class="intro-directions-container">
 						The <b>first</b> letter of the sequence is the first letter of the word.<br>
@@ -119,48 +54,167 @@
 						The <b>third</b> letter of the sequence is the last letter of the word.
 					</div>
 				</div>
+
+				<div class="intro-whats-a-seed-container">
+					<div class="intro-header">WHAT'S A SEED?</div>
 		
-				<div class="intro-btn-container">
-					<div class="option-container">
-						<button class="btn today-option special-hover">
-							<div class="btn-pic-container">
-								<img class="btn-pic" src="img/btn-pics/harlequin.webp">
-							</div>
-							<div class="btn-tag">Play Today's Plate</div>
-						</button>
-		
-						<div class="btn seed-option special-hover">
-							<div class="btn-pic-container">
-								<img class="btn-pic" src="img/btn-pics/plant-car.webp">
-							</div>
-	
-							<div class="btn-tag">Play Seeded Plate</div>
-						</div>
-	
-						<a class="btn search-option special-hover" href="search.html">
-							<div class="btn-pic-container">
-								<img class="btn-pic" src="img/btn-pics/cop.webp">
-							</div>
-	
-							<div class="btn-tag">Search a Plate</div>
-						</a>
-					</div>
+					<div class="intro-middle-container">Wanna battle a friend?</div>
 
-					<div class="seed-container">
-						<input class="seed-input" type="text" placeholder="Enter custom seed..." autocomplete="off">
-
-						<div class="btn play-seed-btn btn-tag special-hover">GENERATE PLATE<br>FROM SEED</div>
-
-						<button class="back-btn special-hover"><i class="fa-solid fa-arrow-left-long"></i>GO BACK</button>
+					<div class="intro-directions-container">
+						Multiple players can enter the same string of characters<br>
+						to generate the same plate without knowing ahead of time.
 					</div>
 				</div>
 			</div>
+	
+			<div class="intro-btn-container">
+				<div class="intro-option-container">
+					<div class="btn intro-btn special-hover" id="today-intro-btn">
+						<img class="intro-btn-pic" src="img/btn-pics/harlequin.webp">
+						<div class="intro-btn-tag">
+							<i class="fa-solid fa-calendar-day"></i>
+							Play Today's Plate
+						</div>
+					</div>
+	
+					<div class="btn intro-btn special-hover" id="seed-intro-btn">
+						<img class="intro-btn-pic" src="img/btn-pics/plant-car.webp">
+						<div class="intro-btn-tag">
+							<i class="fa-solid fa-seedling"></i>
+							Play Seeded Plate
+						</div>
+					</div>
+
+					<a class="btn intro-btn special-hover" id="search-intro-btn" href="search.html">
+						<img class="intro-btn-pic" src="img/btn-pics/cop.webp">
+						<div class="intro-btn-tag">
+							<i class="fas fa-search"></i>
+							Search a Plate
+						</div>
+					</a>
+				</div>
+
+				<div class="seed-container">
+					<input id="seed-input" type="text" placeholder="Enter custom seed..." autocomplete="off">
+
+					<div class="btn special-hover" id="play-seed-btn">
+						<i class="fa-solid fa-car-on"></i>
+						Generate Plate
+					</div>
+
+					<div class="btn special-hover" id="back-btn"><i class="fa-solid fa-arrow-left-long"></i>Go Back</div>
+				</div>
+			</div>
 		</div>
-	</main>
+	</div>
+
+	
+	<!-- Game screen -->
+	<div class="screen" id="game-screen">
+		<div class="license-plate">
+			<img class="plate-background">
+
+			<div class="plate-number">
+				<div class="plate-chars1"></div>
+				<div class="plate-divider"></div>
+				<div class="plate-chars2"></div>
+			</div>
+		</div>
+	
+		<input class="word-input" type="text" placeholder="What words can you find?" autocomplete="off">
+	
+		<button class="btn special-hover" id="submit-btn" tabindex="-1">
+			<i class="fas fa-car"></i>
+			<div>SUBMIT WORD</div>
+			<div class="kbd">Enter</div>
+		</button>
+		<!-- <button class="btn skip-btn" tabindex="-1"><i class="fas fa-truck"></i>Pass!<kbd>Tab</kbd></button>
+		<button class="btn stop-btn" tabindex="-1"><i class="fas fa-car-crash"></i>Crash!<kbd>Esc</kbd></button> -->
+	
+		<div class="score-container big-text">
+			<div><span class="score-amount">0</span> points</div>
+			<div><span class="score-amount">0</span> points</div>
+		</div>
+	
+		<div class="timer-container big-text">
+			<div><span class="time-left"></span> seconds</div>
+			<div><span class="time-left"></span> seconds</div>
+		</div>
+	
+		<div class="circle-btn special-hover" id="cancel-circle-btn"><i class="fa-solid fa-xmark"></i></div>
+		<a class="circle-btn special-hover" id="search-circle-btn" href="search.html"><i class="fas fa-search"></i></a>
+	</div>
+
+
+	<!-- Keyboard -->
+	<div class="keyboard">
+		<button class="drive-btn-mobile"><i class="fas fa-car-side"></i>Drive!</button>
+		<div class="key-row">
+			<button class="key">Q</button>
+			<button class="key">W</button>
+			<button class="key">E</button>
+			<button class="key">R</button>
+			<button class="key">T</button>
+			<button class="key">Y</button>
+			<button class="key">U</button>
+			<button class="key">I</button>
+			<button class="key">O</button>
+			<button class="key">P</button>
+		</div>
+		<div class="key-row">
+			<button class="key">A</button>
+			<button class="key">S</button>
+			<button class="key">D</button>
+			<button class="key">F</button>
+			<button class="key">G</button>
+			<button class="key">H</button>
+			<button class="key">J</button>
+			<button class="key">K</button>
+			<button class="key">L</button>
+		</div>
+		<div class="key-row">
+			<button class="key special-key"><i class="fas fa-trash-alt"></i></button>
+			<button class="key">Z</button>
+			<button class="key">X</button>
+			<button class="key">C</button>
+			<button class="key">V</button>
+			<button class="key">B</button>
+			<button class="key">N</button>
+			<button class="key">M</button>
+			<button class="key special-key delete-key"><i class="fas fa-backspace"></i></button>
+		</div>
+	</div>
+
+
+	<!-- End screen -->
+	<div class="screen" id="end-screen">
+		<div class="big-text" id="end-title">
+			<div></div>
+			<div></div>
+		</div>
+
+		<div id="end-summary-container">
+			<div id="end-summary">You found <span id="end-summary-num-words">0</span> valid word<span >s</span> and scored <span id="end-summary-score">0</span> point<span>s</span>.</div>
+			<div id="end-correct-guesses"></div>
+		</div>
+
+		<div id="end-btn-container">
+			<div class="btn special-hover" id="play-again-btn">
+				<i class="fa-solid fa-arrow-rotate-right"></i>
+				Play Again
+			</div>
+
+			<div class="btn special-hover" id="copy-results-btn">
+				<i class="fa-regular fa-clipboard"></i>
+				Copy Results
+			</div>
+		</div>
+	</div>
+
 
 	<script src="js/words.js"></script>
-	<script src="js/main.js"></script>
 	<script src="js/plates.js"></script>
+	<script src="js/main.js"></script>
 	<script src="js/play.js"></script>
 </body>
 

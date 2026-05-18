@@ -1,57 +1,74 @@
-.game-content {
-	height: 100%;
-	width: 100%;
-}
-
-
-
-/* Intro */
-.intro-container {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
+/* Intro screen */
+#intro-screen {
+	--intro-btn-width: 16rem;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	opacity: 0;
 	background: var(--color1);
-	transition: all var(--transition);
 	z-index: 9999;
+	transition: all var(--container-transition);
+}
+
+.intro-wrapper > * { width: 100%; }
+
+.welcome {
+	flex-direction: row;
+	font-family: var(--font2);
+	font-size: 9rem;
+	/* transform: rotate(-2deg); */
+}
+#welcome-icon {
+	margin-left: -0.1em;
+	color: var(--color4);
+}
+
+.intro-description {
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+	margin-top: 0.75rem;
+	margin-bottom: 1rem;
+	background: var(--color2);
+	border-radius: var(--input-border-radius);
+	/* transform: rotate(1.5deg); */
+}
+
+.intro-description b {
+	display: inline;
+	color: var(--color5);
+}
+
+.intro-description > * { transition: all var(--container-transition); }
+.intro-how-to-play-container {
+	opacity: 1;
+	pointer-events: all;
+}
+.intro-whats-a-seed-container {
+	position: absolute;
+	opacity: 0;
 	pointer-events: none;
 }
 
-.intro-wrapper > * {width: 100%;}
-
-.welcome {
-	font-family: var(--font2);
-	font-size: 6rem;
-}
-
-.intro-description-container {
-	margin-top: 1.5rem;
-	margin-bottom: 2rem;
-}
-
-.how-to-play {
+.intro-header {
 	justify-content: center;
 	align-items: center;
-	height: 2.8rem;
+	height: 2.2rem;
 	width: min-content;
-	font-size: 18px;
+	font-size: 1.2rem;
 	font-weight: 700;
 	letter-spacing: 0.1rem;
-	white-space: nowrap;
 	padding: 0 1em;
-	border-radius: 0.3rem;
-	background: var(--color3);
+	padding-top: 0.13em;
+	border-radius: 0.2rem;
+	white-space: nowrap;
+	background: var(--color5);
 }
 
-.intro-middle-container {margin: 1.5rem 0;}
-
-.intro-directions-container {display: block;}
-.intro-directions-container b {color: var(--color3);}
+.intro-middle-container, .intro-directions-container { display: block; }
+.intro-middle-container { margin-top: 1.5rem; }
+.intro-directions-container { margin-top: 1rem; }
 
 .intro-btn-container {
 	position: relative;
@@ -61,63 +78,95 @@
 	width: min-content;
 }
 
-.intro-btn-container .btn {
-	max-height: 15rem;
-	width: 15rem;
-}
-.intro-btn-container .btn + .btn {margin-left: 1rem;}
-
-.option-container {
+.intro-option-container {
 	display: flex;
 	flex-direction: row;
+	transition: all var(--container-transition);
 }
 
+.intro-btn {
+	flex-direction: column;
+	width: var(--intro-btn-width);
+	height: min-content;
+	background: var(--color3);
+}
+.intro-btn + .intro-btn {margin-left: 1rem;}
+#search-intro-btn {
+	display: flex;
+	flex-direction: column;
+}
+
+.intro-btn-pic {
+	width: 100%;
+	height: 11rem;
+	min-height: 11rem;
+	object-fit: cover;
+}
+
+.intro-btn-tag {
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 3rem;
+	width: 100%;
+	color: var(--color6);
+}
+
+
+/* Seed */
 .seed-container {
 	position: absolute;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	width: var(--intro-btn-width);
 	height: 100%;
 	opacity: 0;
-	font-size: 18px;
-	font-weight: 500;
-	transition: all var(--transition);
 	pointer-events: none;
+	transition: all var(--container-transition);
 }
 
-.seed-input {
-	height: 2.8rem;
+#seed-input {
+	text-align: center;
 	width: 100%;
+	height: 3rem;
 	font-family: var(--font1);
-	font-size: 18px;
-	font-weight: 500;
-	padding: 0 1em;
-	background: var(--color3);
-	color: var(--color4);
+	font-size: 1.5rem;
+	font-weight: 700;
+	line-height: 1;
+	background: transparent;
+	color: var(--color6);
 	border: 0;
-	border-radius: 0.3rem;
 	outline: 0;
 }
-
-.play-seed-btn {
-	min-width: 100%;
-	margin: 1rem 0;
+#seed-input::placeholder {
+	color: var(--color2);
+	text-transform: uppercase;
 }
 
-.back-btn {
-	height: 2.8rem;
-	font-size: 18px;
-	padding: 0 1em;
-	background: transparent;
+#play-seed-btn {
+	width: 100%;
+	background: var(--color3);
+	margin-top: 0.5rem;
+}
+
+#back-btn {
+	width: 100%;
 	color: var(--color4);
-	border: 0;
-	border-radius: 0.3rem;
-	cursor: pointer;
+	margin-top: 0.65rem;
 }
-.back-btn svg {margin-right: 1em;}
 
-.wants-to-play-seed .seed-container {transition-delay: 0.1s;}
-.wants-to-play-seed .option-container {
+
+/* Wants to play seed state */
+.wants-to-play-seed .intro-how-to-play-container {
+	opacity: 0;
+	pointer-events: none;
+}
+.wants-to-play-seed .intro-whats-a-seed-container {
+	opacity: 1;
+	pointer-events: all;
+}
+.wants-to-play-seed .intro-option-container {
 	opacity: 0;
 	pointer-events: none;
 }
@@ -127,34 +176,28 @@
 }
 
 
-
-/* End */
-.end-container {
-	display: none;
-	width: 50rem;
-}
-
-
-
-.game-content {
+/* Game screen */
+#game-screen {
 	position: relative;
 	flex-grow: 1;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	width: 100%;
+	height: 100%;
 }
 
 
-
-/* License Plate */
+/* License plate */
 .license-plate {
+	--plate-height: 21rem;
 	position: relative;
 	justify-content: center;
 	align-items: center;
-	height: 20rem;
-	width: 40rem;
-	filter: drop-shadow(0 0.2rem 0 var(--color3));
+	font-size: 1rem;
+	height: var(--plate-height);
+	width: calc(2 * var(--plate-height));
+	filter: drop-shadow(0 var(--input-border-width) 0 var(--color5));
 }
 
 .plate-background {
@@ -170,10 +213,9 @@
 	z-index: 9999;
 }
 
-.plate-number * {font-family: var(--font3);}
-/* .plate-chars1 {background: yellow;} */
-.plate-number svg {margin-bottom: 1rem;}
-
+.plate-number * { font-family: var(--font2); }
+/* .plate-chars1 { background: yellow; } */
+.plate-number svg { margin-bottom: calc(0.05 * var(--plate-height)); }
 
 
 /* Submitting */
@@ -183,46 +225,39 @@
 	font-family: var(--font1);
 	font-size: 4rem;
 	font-weight: 700;
-	margin: 3rem 0;
+	margin: 4rem 0;
 	border: 0;
 	outline: 0;
 	background: transparent;
-	color: var(--color4);
+	color: var(--color6);
 	text-transform: uppercase;
 }
-.word-input::placeholder {color: var(--color3);}
+.word-input::placeholder { color: var(--color2); }
 
-.submit-btn {
+#submit-btn {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 3rem;
-	width: 14rem;
+	width: 16rem;
 	font-family: var(--font1);
-	font-size: 1.2rem;
 	font-weight: 700;
-	background: var(--color2);
-	color: var(--color4);
-	border: 0;
-	border-radius: 0.3rem;
+	background: var(--color3);
+	color: var(--color6);
 	cursor: pointer;
 }
-.submit-btn svg {margin-right: 0.5em;}
-
-.submit-btn .kbd {
+#submit-btn .kbd {
 	font-family: var(--font1);
 	font-size: 0.75rem;
 	font-weight: 500;
 	padding: 0.3em 0.7em;
 	margin-left: 1rem;
 	background: black;
-	color: var(--color4);
-	transition: all var(--transition);
+	color: var(--color6);
+	transition: all var(--input-transition);
 }
 
-.skip-btn {background: #ffda66;}
-.stop-btn {background: #ff684c;}
-
+#skip-btn {background: #ffda66;}
+#stop-btn {background: #ff684c;}
 
 
 /* Score */
@@ -265,21 +300,19 @@
 }
 
 
-
-/* Circle Buttons */
-.search-link {
+/* Circle buttons */
+#search-circle-btn {
 	bottom: 2rem;
 	right: 2rem;
 }
 
-.info-btn {
+#cancel-circle-btn {
 	bottom: 2rem;
 	left: 2rem;
 }
 
 
-
-/* Mobile Keyboard */
+/* Mobile keyboard */
 .keyboard {
 	--key-spacing: calc(var(--input-spacing) / 2);
 	display: none;
@@ -312,8 +345,45 @@
 	width: calc((100% - 9 * var(--key-spacing)) / 10);
 	border: 0;
 	background: black;
-	color: var(--color4);
+	color: var(--color5);
 }
 .key ~ .key {margin-left: var(--key-spacing);}
 
 .special-key {width: calc(15% - var(--key-spacing));}
+
+
+/* End screen */
+#end-title {
+	font-family: var(--font2);
+	font-size: 6rem;
+}
+
+#end-summary-container {
+	background: var(--color2);
+	padding: 2rem;
+	margin-top: 1.6rem;
+	border-radius: var(--input-border-radius);
+}
+
+#end-summary { display: inline; }
+#end-summary-num-words, #end-summary-score { color: var(--color5) }
+
+#end-correct-guesses {
+	text-align: center;
+	font-weight: 700;
+	font-size: 1.2rem;
+	line-height: 1.2;
+	margin-top: 1rem;
+	color: var(--color5);
+}
+
+#end-btn-container {
+	width: 16rem;
+	margin-top: 1rem;
+}
+
+#end-btn-container .btn {
+	width: 100%;
+	background: var(--color3)
+}
+#end-btn-container .btn + .btn { margin-top: 0.65rem; }

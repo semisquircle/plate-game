@@ -22,65 +22,69 @@
 </head>
 
 <body>
-	<input class="letter-input" type="text" placeholder="Search a three letter combo" maxlength="3" autocomplete="off">
-
-	<div class="filtered-container">
-		<div class="immediate-container">
-			<div class="word-count">These letters correspond with <span class="actual-count">0</span> words:</div>
-
-			<div class="sample-word-list"></div>
-
-			<div class="show-all-btn hide-btn">
-				<i class="fa-solid fa-bars-staggered"></i>
-				Show All
+	<div class="screen current-screen" id="search-screen">
+		<!-- Letter input -->
+		<div id="letter-input-wrapper">
+			<div id="letter-input-placeholder">
+				Search a<br>
+				three-letter<br>
+				combo...
 			</div>
+
+			<div id="letter-input-shadow"></div>
+			<input id="letter-input" type="text" maxlength="3" autocomplete="off" autofocus>
 		</div>
 
-		<div class="properties-container">
-			<div class="longest-container">
-				<span>Longest Word:</span>
-				<span class="actual-longest">???</span>
+
+		<!-- Filtered -->
+		<div class="filtered-container">
+			<div class="filtered-box immediate-box">
+				<div class="word-count">These letters correspond with <span class="actual actual-count">0</span> words:</div>
+				<div class="sample-word-list"></div>
+				<div class="btn special-hover hide-btn" id="show-all-btn">
+					<i class="fa-solid fa-bars-staggered"></i>
+					Show All
+				</div>
 			</div>
-
-			<div class="middlest-container">
-				<span>Middlest Word:</span>
-				<span class="actual-middlest">???</span>
-			</div>
-
-			<div class="shortest-container">
-				<span>Shortest Word:</span>
-				<span class="actual-shortest">???</span>
-			</div>
-		</div>
-	</div>
-
-	<div class="filtered-words-information">
-		<div class="filtered-words-list"></div>
-		<div class="word-amount"></div>
-	</div>
-
-	<a class="circle-btn game-link special-hover" href=".."><i class="fas fa-gamepad"></i></a>
-
-
-
-	<div class="all-container hide-all-container">
-		<div class="all-wrapper-wrapper">
-			<div class="circle-btn close-all-btn special-hover"><i class="fas fa-xmark"></i></div>
-
-			<div class="all-wrapper">
-				<div class="sort-container">
-					<input type="radio" name="sort" id="alpha-sort" autocomplete="off" checked>
-					<label class="btn" for="alpha-sort"><i class="fas fa-sort-alpha-down"></i>Sort Alphabetically</label>
-		
-					<input type="radio" name="sort" id="length-sort" autocomplete="off">
-					<label class="btn" for="length-sort"><i class="fas fa-ruler"></i>Sort by Word Length</label>
+	
+			<div class="properties-container">
+				<div class="filtered-box">
+					<span>Longest Word:</span>
+					<span class="actual actual-longest">???</span>
 				</div>
 	
-				<div class="all-word-list"></div>
+				<div class="filtered-box middlest-box">
+					<span>Middlest Word:</span>
+					<span class="actual actual-middlest">???</span>
+				</div>
+	
+				<div class="filtered-box">
+					<span>Shortest Word:</span>
+					<span class="actual actual-shortest">???</span>
+				</div>
 			</div>
 		</div>
+
+		<a class="circle-btn special-hover" id="game-circle-btn" href="./"><i class="fas fa-gamepad"></i></a>
 	</div>
 
+
+	<!-- All words -->
+	<div class="screen" id="all-words-screen">
+		<div class="circle-btn close-all-btn special-hover"><i class="fas fa-xmark"></i></div>
+
+		<div class="all-wrapper">
+			<div class="sort-container">
+				<input type="radio" name="sort" id="alpha-sort" autocomplete="off" checked>
+				<label class="btn" for="alpha-sort"><i class="fas fa-sort-alpha-down"></i>Sort Alphabetically</label>
+	
+				<input type="radio" name="sort" id="length-sort" autocomplete="off">
+				<label class="btn special-hover" for="length-sort"><i class="fas fa-ruler"></i>Sort by Word Length</label>
+			</div>
+
+			<div class="all-word-list"></div>
+		</div>
+	</div>
 
 
 	<script src="js/words.js"></script>

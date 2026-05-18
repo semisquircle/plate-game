@@ -1,6 +1,7 @@
 html, body {
 	height: 100%;
 	width: 100%;
+	font-size: 14px;
 	overflow-x: hidden;
 	touch-action: manipulation;
 }
@@ -12,32 +13,17 @@ body {
 	justify-content: center;
 	align-items: center;
 	font-family: var(--font1);
-	font-size: 15px;
 	font-weight: 500;
 	margin: 0;
 	background: var(--color1);
-	color: var(--color4);
+	color: var(--color6);
 }
 
 * {
 	padding: 0;
 	margin: 0;
-	/* transition: all var(--transition); */
 	-webkit-tap-highlight-color: transparent;
 	box-sizing: border-box;
-}
-
-.car-background {
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
-}
-
-main {
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
 }
 
 div {
@@ -52,66 +38,65 @@ button {
 	font-family: var(--font1);
 }
 
-.show {
-	opacity: 1 !important;
-	pointer-events: all !important;
+.screen {
+	position: absolute;
+	top: 0;
+	left: 0;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	pointer-events: none;
+	z-index: 9998;
+	transition: all var(--container-transition);
 }
 
+.current-screen {
+	opacity: 1 !important;
+	pointer-events: all !important;
+	z-index: 9999 !important;
+}
 
-
-/* Buttons */
 .big-text {
 	position: relative;
+	line-height: 1;
 	text-transform: uppercase;
 }
 .big-text > div:nth-child(1) {
 	position: absolute;
 	color: var(--color2);
-	-webkit-text-stroke: 0.15em var(--color2);
-	filter: drop-shadow(0 0.15em 0 var(--color2));
+	-webkit-text-stroke: calc(2 * var(--input-border-width)) var(--color4);
+	filter: drop-shadow(0 var(--input-border-width) 0 var(--color4));
 	z-index: 10;
 }
 .big-text > div:nth-child(2) {
-	color: var(--color4);
+	color: var(--color6);
 	z-index: 11;
 }
 
+
+/* Buttons */
 .btn {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 3rem;
+	font-size: 1.2rem;
+	font-weight: 700;
+	line-height: 1;
+	color: var(--color6);
 	border: 0;
-	border-radius: 0.5rem;
-	color: var(--color4);
+	border-radius: var(--input-border-radius);
 	cursor: pointer;
 	overflow: hidden;
 	text-decoration: none;
-}
-.btn svg {margin-right: 1rem;}
-
-.btn-pic-container {
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
-}
-
-.btn-pic {
-	height: 100%;
-	width: 100%;
-	object-fit: cover;
-}
-
-.btn-tag {
-	justify-content: center;
-	align-items: center;
-	height: 4.5rem;
-	width: 100%;
-	font-family: var(--font1);
-	font-size: 1.4rem;
-	font-weight: 700;
-	line-height: 1;
 	text-transform: uppercase;
-	background: var(--color2);
-	color: var(--color4);
+}
+.btn svg {
+	margin-right: 0.5em;
+	padding-bottom: 0.1em;
 }
 
 .circle-btn {
@@ -124,19 +109,18 @@ button {
 	height: var(--dimension);
 	width: var(--dimension);
 	font-size: calc(var(--dimension) / 2);
-	border-radius: 999rem;
+	border-radius: 45%;
 	background: var(--color3);
-	color: var(--color4);
+	color: var(--color6);
 	cursor: pointer;
 }
 
-.special-hover {transition: all var(--transition);}
-.special-hover:hover {
-	outline: 4px solid var(--color4);
-	transform: scale(1.05);
+.special-hover {
+	transition: transform var(--input-transition);
+	backface-visibility: hidden;
+	-webkit-font-smoothing: antialiased;
 }
-
-
-
-/* This has to be down here */
-.flex-show {display: flex !important;}
+.special-hover:hover {
+	outline: var(--input-border-width) solid var(--color6);
+    transform: scale(1.05) translateZ(0);
+}

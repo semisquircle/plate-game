@@ -2,58 +2,62 @@ plateList = [
 	{
 		state: "pa",
 		text: {
-			size: 8.5,
+			size: 0.425,
 			color: "#00295d",
-			offset: 1.6
+			offset: 0
 		},
 		divider: {
 			name: "keystone",
-			width: 3,
-			margin: 1
+			width: 0.15,
+			margin: 0.05
 		}
 	},
 	{
 		state: "ct",
 		text: {
-			size: 8.5,
+			size: 0.425,
 			color: "#142b5f",
-			offset: 2
+			offset: 0.025
 		},
 		divider: {
 			name: "dot",
-			width: 1.8,
-			margin: 0.5
+			width: 0.09,
+			margin: 0.025
 		}
 	},
 	{
 		state: "nj",
 		text: {
-			size: 8.5,
+			size: 0.425,
 			color: "#2f292b",
-			offset: 2
+			offset: 0.05
 		},
 		divider: {
 			name: "nj",
-			width: 4.5,
-			margin: 1.5
+			width: 0.225,
+			margin: 0.075
 		}
 	},
 	{
 		state: "wv",
 		text: {
-			size: 8,
+			size: 0.4,
 			color: "#022169",
-			offset: 4
+			offset: 0.125
 		},
-		divider: {width: 3}
+		divider: {
+			width: 0.15
+		}
 	},
 	{
 		state: "vt",
 		text: {
-			size: 8,
+			size: 0.4,
 			color: "#ffffff",
-			offset: 1.5
+			offset: 0
 		},
-		divider: {width: 3}
+		divider: {
+			width: 0.15
+		}
 	}
-]
+];

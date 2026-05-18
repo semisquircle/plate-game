@@ -3,13 +3,13 @@
 	font-family: "Ciutadella Rounded";
 	font-weight: 300;
 	font-style: normal;
-	src: url("Ciutadella/woff2/Ciutadella-Rounded-Light.woff2") format("woff2");
+	src: url("Ciutadella/Ciutadella-Rounded-Light.woff2") format("woff2");
 }
 @font-face {
 	font-family: "Ciutadella Rounded";
 	font-weight: 300;
 	font-style: italic;
-	src: url("Ciutadella/woff2/Ciutadella-Rounded-Light-Italic.woff2") format("woff2");
+	src: url("Ciutadella/Ciutadella-Rounded-Light-Italic.woff2") format("woff2");
 }
 
 /* Ciutadella Rounded Regular */
@@ -17,13 +17,13 @@
 	font-family: "Ciutadella Rounded";
 	font-weight: 400;
 	font-style: normal;
-	src: url("Ciutadella/woff2/Ciutadella-Rounded-Regular.woff2") format("woff2");
+	src: url("Ciutadella/Ciutadella-Rounded-Regular.woff2") format("woff2");
 }
 @font-face {
 	font-family: "Ciutadella Rounded";
 	font-weight: 400;
 	font-style: italic;
-	src: url("Ciutadella/woff2/Ciutadella-Rounded-Regular-Italic.woff2") format("woff2");
+	src: url("Ciutadella/Ciutadella-Rounded-Regular-Italic.woff2") format("woff2");
 }
 
 /* Ciutadella Rounded Medium */
@@ -31,13 +31,13 @@
 	font-family: "Ciutadella Rounded";
 	font-weight: 500;
 	font-style: normal;
-	src: url("Ciutadella/woff2/Ciutadella-Rounded-Medium.woff2") format("woff2");
+	src: url("Ciutadella/Ciutadella-Rounded-Medium.woff2") format("woff2");
 }
 @font-face {
 	font-family: "Ciutadella Rounded";
 	font-weight: 500;
 	font-style: italic;
-	src: url("Ciutadella/woff2/Ciutadella-Rounded-Medium-Italic.woff2") format("woff2");
+	src: url("Ciutadella/Ciutadella-Rounded-Medium-Italic.woff2") format("woff2");
 }
 
 /* Ciutadella Rounded SemiBold */
@@ -45,13 +45,13 @@
 	font-family: "Ciutadella Rounded";
 	font-weight: 600;
 	font-style: normal;
-	src: url("Ciutadella/woff2/Ciutadella-Rounded-SemiBold.woff2") format("woff2");
+	src: url("Ciutadella/Ciutadella-Rounded-SemiBold.woff2") format("woff2");
 }
 @font-face {
 	font-family: "Ciutadella Rounded";
 	font-weight: 600;
 	font-style: italic;
-	src: url("Ciutadella/woff2/Ciutadella-Rounded-SemiBold-Italic.woff2") format("woff2");
+	src: url("Ciutadella/Ciutadella-Rounded-SemiBold-Italic.woff2") format("woff2");
 }
 
 /* Ciutadella Rounded Bold */
@@ -59,34 +59,20 @@
 	font-family: "Ciutadella Rounded";
 	font-weight: 700;
 	font-style: normal;
-	src: url("Ciutadella/woff2/Ciutadella-Rounded-Bold.woff2") format("woff2");
+	src: url("Ciutadella/Ciutadella-Rounded-Bold.woff2") format("woff2");
 }
 @font-face {
 	font-family: "Ciutadella Rounded";
 	font-weight: 700;
 	font-style: italic;
-	src: url("Ciutadella/woff2/Ciutadella-Rounded-Bold-Italic.woff2") format("woff2");
+	src: url("Ciutadella/Ciutadella-Rounded-Bold-Italic.woff2") format("woff2");
 }
 
 
-
-
-/* Gimbo */
+/* License Plate USA */
 @font-face {
-	font-family: "Gimbo";
+	font-family: "License Plate USA";
 	font-weight: 400;
 	font-style: normal;
-	src: url("Gimbo-Black-Soft.otf") format("opentype");
-}
-
-
-
-
-
-/* License Plate */
-@font-face {
-	font-family: "License Plate";
-	font-weight: 400;
-	font-style: normal;
-	src: url("License-Plate.woff2") format("woff2");
+	src: url("License-Plate-USA.woff2") format("woff2");
 }

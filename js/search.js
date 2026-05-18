@@ -1,14 +1,15 @@
-$(document).ready(function() {
-	$(".letter-input").focus();
-});
-
-
-
-$(".letter-input").on("propertychange input", function() {
+// Letter input
+$("#letter-input").on("propertychange input", function() {
 	var $this = $(this);
-
 	var upper = $(this).val().toUpperCase().replace(/[^A-Z]/g, "");
+
 	$(this).val(upper);
+	$("#letter-input-shadow").html(upper);
+
+	if ($(this).val().length > 0)
+		$("#letter-input-placeholder").hide();
+	else
+		$("#letter-input-placeholder").show();
 
 	if ($(this).val().length == 3) {
 		var letter1 = $this.val().charAt(0).toLowerCase();
@@ -52,7 +53,7 @@ $(".letter-input").on("propertychange input", function() {
 		var sampleList = $(".sample-word-list");
 		sampleList.html(filteredAllHtml);
 		if (sampleList[0].offsetHeight < sampleList[0].scrollHeight)
-			$(".show-all-btn").removeClass("hide-btn");
+			$("#show-all-btn").removeClass("hide-btn");
 
 		$(".actual-longest").html(longest);
 		$(".actual-middlest").html(middlest);
@@ -62,37 +63,36 @@ $(".letter-input").on("propertychange input", function() {
 	} else {
 		$(".actual-count").html("0");
 		$(".sample-word-list").html("");
-		$(".show-all-btn").addClass("hide-btn");
+		$("#show-all-btn").addClass("hide-btn");
 		$(".actual-longest, .actual-middlest, .actual-shortest").html("???");
 	}
 });
 
-
-
-$(".show-all-btn").click(function() {
-	$(".all-container").removeClass("hide-all-container");
+$("#show-all-btn").click(function() {
+	changeScreen("all-words");
 });
 
+
+// Circle buttons
 $(".close-all-btn").click(function() {
-	$(".all-container").addClass("hide-all-container");
+	changeScreen("search");
 });
 
 
+// Sort buttons
+const $sortInputs = $(`input[name="sort"]`);
+const $labels = $sortInputs.next("label");
+$sortInputs.on("change", function () {
+	const words = $(".all-word-list .filtered-word").get();
 
-$("input[name='sort']").change(function() {
-	var words = $(".all-word-list .filtered-word");
-	
-	if ($(this).is("#alpha-sort")) {
-		words.sort(function(a, b) {
-			if ($(a).text() < $(b).text()) return -1;
-			if ($(a).text() > $(b).text()) return 1;
-			return 0;
-		}).appendTo(words.parent());
-	}
+	const sortFn = this.id === "alpha-sort"
+		? (a, b) => $(a).text().localeCompare($(b).text())
+		: (a, b) => $(a).text().length - $(b).text().length;
 
-	else if ($(this).is("#length-sort")) {
-		words.sort(function(a, b) {
-			return $(a).text().length < $(b).text().length;
-		}).appendTo(words.parent());
-	}
+	words.sort(sortFn);
+
+	$('.all-word-list').append(words);
+
+	$labels.addClass("special-hover");
+	$(this).next("label").removeClass("special-hover");
 });

@@ -1,35 +1,38 @@
 :root {
 	/* Colors */
-	/* --color1: #090821;
-	--color2: #201e31;
-	--color3: #312f44;
-	--color4: #fc2f70;
-	--color5: maroon;
+	/* --color1: oklch(40.685% 0.06248 44);
+	--color2: oklch(45.983% 0.06555 33);
+	--color3: oklch(55.123% 0.07550 22);
+	--color4: oklch(66.587% 0.09060 11);
+	--color5: oklch(79.734% 0.11111 0);
+	--color6: white; */
 
-	--color1: #58608f;
-	--color2: #7580BF;
-	--color3: #9AA3D9;
-	--color4: #BBC8F2;
-	--color5: maroon; */
+	--color1: oklch(40.685% 0.06248 144);
+	--color2: oklch(45.983% 0.06555 133);
+	--color3: oklch(55.123% 0.07550 122);
+	--color4: oklch(66.587% 0.09060 111);
+	--color5: oklch(79.734% 0.11111 100);
+	--color6: white;
 
-	--color1: #2a4d69;
-	--color2: #4b86b4;
-	--color3: #53d2db;
-	--color4: white;
+	/* --color1: #2a4d69;
+	--color2: #2f5e77;
+	--color3: #387c91;
+	--color4: #45a3b3;
+	--color5: #53d2db;
+	--color6: white; */
 
 	/* Fonts */
 	--font1: "Ciutadella Rounded";
-	--font2: "Gimbo";
-	--font3: "License Plate";
+	--font2: "License Plate USA";
 
 	/* Container Variables */
 	--line-height: 1.25em;
-	--container-border-width: 0.4rem;
 	--container-spacing: 1.8rem;
-	--transition: 0.1s;
+	--container-transition: 0.2s;
 
 	/* Input Variables */
 	--input-spacing: 0.4rem;
-	--input-radius: 0.35rem;
-	--input-skew: -9deg;
+	--input-border-width: 0.3rem;
+	--input-border-radius: 0.5rem;
+	--input-transition: 0.1s;
 }
