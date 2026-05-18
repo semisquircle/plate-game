@@ -17,7 +17,7 @@ class PlateGame {
 
 		this.correctGuesses = [];
 		this.score = 0;
-		this.timeLeft = 5;
+		this.timeLeft = 60;
 		this.timer = null;
 	}
 
