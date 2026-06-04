@@ -5,6 +5,10 @@ $(document).ready(function() {
 		$("#intro-screen").addClass("wants-to-play-seed");
 		$("#seed-input").val(seed);
 	}
+
+	$("#logo").load("img/logo.svg", function() {
+		$(this).contents().unwrap();
+	});
 });
 
 
@@ -33,7 +37,7 @@ class PlateGame {
 		this.letter2 = wordMiddle.charAt(Math.floor(this.seed * wordMiddle.length));
 		this.letter3 = this.word.slice(-1);
 		this.letString = (this.letter1 + this.letter2 + this.letter3).toUpperCase();
-		this.numString = generateNumString(4);
+		this.numString = Math.floor(this.seed * 10000).toString().padStart(4, "0");
 		this.plateNumber = this.letString + this.numString;
 
 		this.correctGuesses = [];
@@ -62,13 +66,6 @@ class PlateGame {
 
 var Game;
 const tiltExtreme = 1.5;
-
-function generateNumString(length) {
-	let string = "";
-	let digits = "0123456789";
-	for (var i = 0; i < length; i++) string += digits.charAt(Math.floor(Math.random() * digits.length));
-	return string;
-}
 
 function startGameFrontEnd() {	
 	$(".plate-background").attr("src", "img/plates/" + Game.plate.state + ".svg");

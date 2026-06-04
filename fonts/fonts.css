@@ -69,10 +69,10 @@
 }
 
 
-/* License Plate USA */
+/* Plate Game Mono */
 @font-face {
-	font-family: "License Plate USA";
+	font-family: "Plate Game Mono";
 	font-weight: 400;
 	font-style: normal;
-	src: url("License-Plate-USA.woff2") format("woff2");
+	src: url("Plate-Game-Mono/Plate-Game-Mono.woff2") format("woff2");
 }

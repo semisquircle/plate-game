@@ -7,11 +7,11 @@
 	--color5: oklch(79.734% 0.11111 0);
 	--color6: white; */
 
-	--color1: oklch(40.685% 0.06248 144);
-	--color2: oklch(45.983% 0.06555 133);
-	--color3: oklch(55.123% 0.07550 122);
-	--color4: oklch(66.587% 0.09060 111);
-	--color5: oklch(79.734% 0.11111 100);
+	--color1: oklch(40.685% 0.06248 144); /* #345233 */
+	--color2: oklch(45.983% 0.06555 133); /* #496039 */
+	--color3: oklch(55.123% 0.07550 122); /* #6a7946 */
+	--color4: oklch(66.587% 0.09060 111); /* #969955 */
+	--color5: oklch(79.734% 0.11111 100); /* #cdbf66 */
 	--color6: white;
 
 	/* --color1: #2a4d69;
@@ -23,7 +23,7 @@
 
 	/* Fonts */
 	--font1: "Ciutadella Rounded";
-	--font2: "License Plate USA";
+	--font2: "Plate Game Mono";
 
 	/* Container Variables */
 	--line-height: 1.25em;
