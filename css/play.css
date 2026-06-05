@@ -187,6 +187,14 @@
 }
 
 
+/* Loading screen */
+#loading-text {
+	text-align: center;
+	font-size: 3rem;
+	font-weight: 900;
+}
+
+
 /* Game screen */
 #game-screen {
 	position: relative;
@@ -272,7 +280,7 @@
 
 
 /* Score */
-.score-container, .timer-container {
+#score-container, #timer-container {
 	--font-size: 3rem;
 	--spacing: 2.5rem;
 	position: absolute;
@@ -280,16 +288,16 @@
 	font-size: var(--font-size);
 	font-weight: 900;
 }
-.score-container div, .timer-container div {display: block;}
+#score-container div, #timer-container div { display: block; }
 
-.score-container {
+#score-container {
 	left: var(--spacing);
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
 
-.timer-container {right: var(--spacing);}
+#timer-container { right: var(--spacing); }
 
 .points-message, .wrong-message {
 	position: absolute;

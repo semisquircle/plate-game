@@ -4,6 +4,7 @@ $(document).ready(function() {
 	if (seed) {
 		$("#intro-screen").addClass("wants-to-play-seed");
 		$("#seed-input").val(seed);
+		$("#intro-scroll-container").scrollTop($(document).height());
 	}
 
 	$("#logo").load("img/logo.svg", function() {
@@ -13,7 +14,11 @@ $(document).ready(function() {
 
 
 // Game data
+var Game;
 class PlateGame {
+	totalTime = 60;
+	tiltExtreme = 1.5;
+
 	constructor(kind, seedInput) {
 		this.kind = kind;
 
@@ -42,7 +47,7 @@ class PlateGame {
 
 		this.correctGuesses = [];
 		this.score = 0;
-		this.timeLeft = 60;
+		this.timeLeft = this.totalTime;
 		this.timer = null;
 	}
 
@@ -50,9 +55,9 @@ class PlateGame {
 		this.timer = setInterval(() => {
 			if (this.timeLeft > 1) {
 				this.timeLeft--;
-				$(".time-left").text(this.timeLeft);
+				$(".time-left").html(this.timeLeft);
 			} else {
-				$(".time-left").text("0");
+				$(".time-left").html("0");
 				this.destroyTimer();
 				wrapup();
 			}
@@ -65,10 +70,11 @@ class PlateGame {
 	}
 }
 
-var Game;
-const tiltExtreme = 1.5;
+function initGameScreen() {
+	// Big text
+	$(".current-score").html(0);
+	$(".time-left").html(Game.totalTime);
 
-function startGameFrontEnd() {	
 	$("#plate-background").attr("src", "img/plates/" + Game.plate.state + ".svg");
 
 	// Apply CSS styles to plate
@@ -77,6 +83,10 @@ function startGameFrontEnd() {
 		"margin-top": `calc(${Game.plate.text.offset} * var(--plate-height))`,
 		"color": Game.plate.text.color
 	});
+
+	// Display letters and numbers onto plate
+	$("#plate-chars1").html(Game.letString);
+	$("#plate-chars2").html(Game.numString);
 
 	// If plate has specified divider
 	if (Game.plate.divider.svg) {
@@ -95,20 +105,20 @@ function startGameFrontEnd() {
 		});
 	}
 
-	// Randomly tilt license plate on game start
-	let tilt = Math.floor(Math.random() * tiltExtreme) + 1;
+	// Randomly tilt plate
+	let tilt = Math.floor(Math.random() * Game.tiltExtreme) + 1;
 		tilt *= Math.round(Math.random()) ? 1 : -1;
 	$("#license-plate").css("transform", "rotate(" + tilt + "deg)")
+}
 
-	// Display letters and numbers onto plate
-	$("#plate-chars1").html(Game.letString);
-	$("#plate-chars2").html(Game.numString);
-
-	// Timer functionality
-	$(".time-left").html(Game.timeLeft);
-	Game.startTimer();
-
-	$("#word-input").focus();
+function waitForImg(img) {
+	return new Promise(resolve => {
+		if (img.complete) {
+			resolve();
+		} else {
+			img.addEventListener("load", resolve, { once: true });
+		}
+	});
 }
 
 function wrapup() {
@@ -128,7 +138,7 @@ function wrapup() {
 	changeScreen("end");
 }
 
-function resetIntro() {
+function resetIntroScreen() {
 	$("#intro-screen").removeClass("wants-to-play-seed");
 	$("#seed-input").val("");
 
@@ -160,7 +170,7 @@ function submitWord() {
 	if (realWordCheck && !alreadyGuessedCheck && firstLetterCheck && middleLetterCheck && lastLetterCheck) {
 		Game.correctGuesses.push(wordInput);
 		Game.score += wordInput.length;
-		$(".score-amount").html(Game.score);
+		$(".current-score").html(Game.score);
 
 		let pointsDiv = $(`<div class="points-message">+${wordInput.length} points!</div>`);
 		addScore(pointsDiv);
@@ -174,10 +184,10 @@ function submitWord() {
 }
 
 
-// Function to add score message in score container
+// Animate score message in score container
 function addScore(e) {
-	let fontSize = parseFloat($(".score-container").css("--font-size"));
-	e.appendTo($(".score-container")).animate({
+	let fontSize = parseFloat($("#score-container").css("--font-size"));
+	e.appendTo($("#score-container")).animate({
 		"display": "none",
 		"opacity": 0,
 		"margin-top": (fontSize * 2.8).toString() + "rem"
@@ -187,9 +197,20 @@ function addScore(e) {
 
 // Buttons
 $("#today-intro-btn").click(function() {
+	// New game backend
 	Game = new PlateGame("daily");
-	startGameFrontEnd();
-	changeScreen("game");
+
+	// New game frontend
+	initGameScreen();
+	changeScreen("loading");
+	Promise.all([
+		waitForImg(document.getElementById("plate-background")),
+		waitForImg(document.getElementById("plate-divider"))
+	]).then(() => {
+		Game.startTimer();
+		$("#word-input").focus();
+		changeScreen("game");
+	});
 });
 
 $("#seed-intro-btn").click(function() {
@@ -199,11 +220,12 @@ $("#seed-intro-btn").click(function() {
 });
 
 $("#back-btn").click(function() {
-	resetIntro();
+	resetIntroScreen();
 });
 
 $("#play-seed-btn").click(function() {
 	if ($("#seed-input").val().length > 0) {
+		// New game backend
 		let customSeedInput = $("#seed-input").val();
 		Game = new PlateGame("seeded", customSeedInput);
 
@@ -212,8 +234,17 @@ $("#play-seed-btn").click(function() {
 		url.searchParams.set("seed", customSeedInput);
 		history.replaceState(null, "", url.toString());
 
-		startGameFrontEnd();
-		changeScreen("game");
+		// New game frontend
+		initGameScreen();
+		changeScreen("loading");
+		Promise.all([
+			waitForImg(document.getElementById("plate-background")),
+			waitForImg(document.getElementById("plate-divider"))
+		]).then(() => {
+			Game.startTimer();
+			$("#word-input").focus();
+			changeScreen("game");
+		});
 	}
 });
 
@@ -221,12 +252,12 @@ $("#submit-btn").click(() => submitWord());
 
 $("#cancel-circle-btn").click(function() {
 	Game.destroyTimer();
-	resetIntro();
+	resetIntroScreen();
 	changeScreen("intro");
 });
 
 $("#play-again-btn").click(function() {
-	resetIntro();
+	resetIntroScreen();
 	changeScreen("intro");
 });
 
