@@ -26,6 +26,8 @@
 	<div class="screen current-screen" id="intro-screen">
 		<div id="intro-scroll-container">
 			<div id="intro-wrapper">
+				<div class="scroll-spacer"></div>
+
 				<div id="logo"></div>
 
 				<div id="intro-description">
@@ -59,8 +61,8 @@
 					</div>
 				</div>
 		
-				<div class="intro-btn-container">
-					<div class="intro-option-container">
+				<div id="intro-btn-container">
+					<div id="intro-option-container">
 						<div class="btn intro-btn special-hover" id="today-intro-btn">
 							<img class="intro-btn-pic" src="img/btn-pics/harlequin.webp">
 							<div class="intro-btn-tag">
@@ -86,7 +88,7 @@
 						</a>
 					</div>
 
-					<div class="seed-container">
+					<div id="seed-container">
 						<input id="seed-input" type="text" placeholder="Enter custom seed..." maxlength="32" autocomplete="off">
 
 						<div class="btn special-hover" id="play-seed-btn">
@@ -97,6 +99,8 @@
 						<div class="btn special-hover" id="back-btn"><i class="fa-solid fa-arrow-left-long"></i>Go Back</div>
 					</div>
 				</div>
+
+				<div class="scroll-spacer"></div>
 			</div>
 		</div>
 
@@ -106,17 +110,17 @@
 	
 	<!-- Game screen -->
 	<div class="screen" id="game-screen">
-		<div class="license-plate">
-			<img class="plate-background">
+		<div id="license-plate">
+			<img id="plate-background">
 
-			<div class="plate-number">
-				<div class="plate-chars1"></div>
-				<div class="plate-divider"></div>
-				<div class="plate-chars2"></div>
+			<div id="plate-number">
+				<div id="plate-chars1"></div>
+				<img id="plate-divider">
+				<div id="plate-chars2"></div>
 			</div>
 		</div>
 	
-		<input class="word-input" type="text" placeholder="Enter a word..." autocomplete="off">
+		<input id="word-input" type="text" placeholder="Enter a word..." autocomplete="off">
 	
 		<button class="btn special-hover" id="submit-btn" tabindex="-1">
 			<i class="fas fa-car"></i>
@@ -142,7 +146,7 @@
 
 
 	<!-- Keyboard -->
-	<div class="keyboard">
+	<!-- <div class="keyboard">
 		<button class="drive-btn-mobile"><i class="fas fa-car-side"></i>Drive!</button>
 		<div class="key-row">
 			<button class="key">Q</button>
@@ -178,7 +182,7 @@
 			<button class="key">M</button>
 			<button class="key special-key delete-key"><i class="fas fa-backspace"></i></button>
 		</div>
-	</div>
+	</div> -->
 
 
 	<!-- End screen -->
@@ -196,7 +200,7 @@
 		<div id="end-btn-container">
 			<div class="btn special-hover" id="play-again-btn">
 				<i class="fa-solid fa-arrow-rotate-right"></i>
-				Play Again
+				Back to Menu
 			</div>
 
 			<div class="btn special-hover" id="copy-results-btn">

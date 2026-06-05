@@ -37,7 +37,7 @@ class PlateGame {
 		this.letter2 = wordMiddle.charAt(Math.floor(this.seed * wordMiddle.length));
 		this.letter3 = this.word.slice(-1);
 		this.letString = (this.letter1 + this.letter2 + this.letter3).toUpperCase();
-		this.numString = Math.floor(this.seed * 10000).toString().padStart(4, "0");
+		this.numString = Math.floor(this.seed * (10 ** this.plate.text.digits)).toString().padStart(this.plate.text.digits, "0");
 		this.plateNumber = this.letString + this.numString;
 
 		this.correctGuesses = [];
@@ -48,10 +48,11 @@ class PlateGame {
 
 	startTimer() {
 		this.timer = setInterval(() => {
-			if (this.timeLeft > 0) {
+			if (this.timeLeft > 1) {
 				this.timeLeft--;
 				$(".time-left").text(this.timeLeft);
 			} else {
+				$(".time-left").text("0");
 				this.destroyTimer();
 				wrapup();
 			}
@@ -68,53 +69,50 @@ var Game;
 const tiltExtreme = 1.5;
 
 function startGameFrontEnd() {	
-	$(".plate-background").attr("src", "img/plates/" + Game.plate.state + ".svg");
+	$("#plate-background").attr("src", "img/plates/" + Game.plate.state + ".svg");
 
 	// Apply CSS styles to plate
-	$(".plate-number").attr("style", `
-		font-size: calc(${Game.plate.text.size} * var(--plate-height));
-		margin-top: calc(${Game.plate.text.offset} * var(--plate-height));
-		color: ${Game.plate.text.color};
-	`);
+	$("#plate-number").css({
+		"font-size": `calc(${Game.plate.text.size} * var(--plate-height))`,
+		"margin-top": `calc(${Game.plate.text.offset} * var(--plate-height))`,
+		"color": Game.plate.text.color
+	});
 
 	// If plate has specified divider
-	if (Game.plate.divider.name) {
-		$(".plate-divider").load("img/dividers/" + Game.plate.divider.name + ".svg", function() {
-			$(this).contents().unwrap();
-	
-			$(".plate-number svg").attr("style", `
-				height: calc(${Game.plate.divider.width} * var(--plate-height)) !important;
-				margin-left: calc(${Game.plate.divider.margin} * var(--plate-height));
-				margin-right: calc(${Game.plate.divider.margin} * var(--plate-height));
-			`);
-	
-			$(".plate-number svg > *").css("fill", Game.plate.text.color);
+	if (Game.plate.divider.svg) {
+		$("#plate-divider").attr("src", "img/dividers/" + Game.plate.state + ".svg");
+		$("#plate-divider").css({
+			"height": `calc(${Game.plate.divider.width} * var(--plate-height))`,
+			"margin-left": `calc(${Game.plate.divider.margin} * var(--plate-height))`,
+			"margin-right": `calc(${Game.plate.divider.margin} * var(--plate-height))`
 		});
 	} else {
-		$(".plate-divider").attr("style", `
-			margin-left: calc(${Game.plate.divider.width / 2} * var(--plate-height));
-			margin-right: calc(${Game.plate.divider.width / 2} * var(--plate-height));
-		`);
+		$("#plate-divider").attr("src", "");
+		$("#plate-divider").css({
+			"height": "0",
+			"margin-left": `calc(${Game.plate.divider.width / 2} * var(--plate-height))`,
+			"margin-right": `calc(${Game.plate.divider.width / 2} * var(--plate-height))`
+		});
 	}
 
 	// Randomly tilt license plate on game start
 	let tilt = Math.floor(Math.random() * tiltExtreme) + 1;
 		tilt *= Math.round(Math.random()) ? 1 : -1;
-	$(".license-plate").css("transform", "rotate(" + tilt + "deg)")
+	$("#license-plate").css("transform", "rotate(" + tilt + "deg)")
 
 	// Display letters and numbers onto plate
-	$(".plate-chars1").html(Game.letString);
-	$(".plate-chars2").html(Game.numString);
+	$("#plate-chars1").html(Game.letString);
+	$("#plate-chars2").html(Game.numString);
 
 	// Timer functionality
 	$(".time-left").html(Game.timeLeft);
 	Game.startTimer();
 
-	$(".word-input").focus();
+	$("#word-input").focus();
 }
 
 function wrapup() {
-	$(".word-input").blur();
+	$("#word-input").blur();
 
 	let endMsg = "";
 	if (Game.score >= 100) endMsg = "The DMV fears you";
@@ -150,7 +148,7 @@ $("#seed-input").on("propertychange input", function() {
 
 // Submit word
 function submitWord() {
-	var wordInput = $(".word-input").val();
+	var wordInput = $("#word-input").val();
 
 	// Check if entered word matches letters
 	let realWordCheck = wordList.includes(wordInput);
@@ -167,8 +165,8 @@ function submitWord() {
 		let pointsDiv = $(`<div class="points-message">+${wordInput.length} points!</div>`);
 		addScore(pointsDiv);
 
-		$(".word-input").val("");
-		$(".word-input").focus();
+		$("#word-input").val("");
+		$("#word-input").focus();
 	} else {
 		let wrongDiv = $(`<div class="wrong-message">Invalid word!</div>`);
 		addScore(wrongDiv);
@@ -271,10 +269,9 @@ $("#share-btn").click(function() {
 
 // Keyboard controls
 $(document).keydown(function(e) {
-	if (e.keyCode === 13) submitWord();
-	// if (e.keyCode === 9) {
-	// 	e.preventDefault();
-	// 	$(".plate-number svg").replaceWith(`<div class="plate-divider"></div>`);
-	// 	startGame(Math.random());
-	// }
+	if (e.keyCode === 13) {
+		let currentInput = $(document.activeElement).attr("id");
+		if (currentInput == "seed-input") $("#play-seed-btn").click();
+		else if (currentInput == "word-input") submitWord();
+	}
 });

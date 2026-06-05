@@ -1,7 +1,7 @@
 /* Intro screen */
 #intro-screen {
 	--intro-btn-width: 16rem;
-	--intro-btn-spacing: 1rem;
+	--intro-spacing: 1rem;
 	background: var(--color1);
 	z-index: 9999;
 	transition: all var(--container-transition);
@@ -10,14 +10,19 @@
 #intro-scroll-container {
 	width: 100%;
 	height: 100%;
-	padding: 6rem 0;
+	height: min-content;
 	overflow-y: scroll;
+}
+
+.scroll-spacer {
+	width: 100%;
+	min-height: var(--scroll-padding);
 }
 
 #intro-wrapper > * { width: 100%; }
 
 #logo {
-	--logo-width: calc(3 * var(--intro-btn-width) + 2 * var(--intro-btn-spacing));
+	--logo-width: calc(3 * var(--intro-btn-width) + 2 * var(--intro-spacing));
 	min-width: var(--logo-width);
 	min-height: calc(0.4 * var(--logo-width));
 }
@@ -31,10 +36,11 @@
 	position: relative;
 	justify-content: center;
 	align-items: center;
+	text-align: center;
 	padding-top: 2rem;
 	padding-bottom: 2rem;
-	margin-top: 0.75rem;
-	margin-bottom: 1rem;
+	margin-top: var(--intro-spacing);
+	margin-bottom: var(--intro-spacing);
 	background: var(--color2);
 	border-radius: var(--input-border-radius);
 }
@@ -73,8 +79,9 @@
 .intro-middle-container, .intro-directions-container { display: block; }
 .intro-middle-container { margin-top: 1.5rem; }
 .intro-directions-container { margin-top: 1rem; }
+#intro-how-to-play-container .intro-directions-container { text-align: left; }
 
-.intro-btn-container {
+#intro-btn-container {
 	position: relative;
 	flex-direction: row;
 	justify-content: center;
@@ -82,7 +89,7 @@
 	width: min-content;
 }
 
-.intro-option-container {
+#intro-option-container {
 	display: flex;
 	flex-direction: row;
 	transition: all var(--container-transition);
@@ -118,7 +125,7 @@
 
 
 /* Seed */
-.seed-container {
+#seed-container {
 	position: absolute;
 	flex-direction: column;
 	justify-content: center;
@@ -162,19 +169,19 @@
 
 
 /* Wants to play seed state */
-.wants-to-play-seed .intro-how-to-play-container {
+.wants-to-play-seed #intro-how-to-play-container {
 	opacity: 0;
 	pointer-events: none;
 }
-.wants-to-play-seed .intro-whats-a-seed-container {
+.wants-to-play-seed #intro-whats-a-seed-container {
 	opacity: 1;
 	pointer-events: all;
 }
-.wants-to-play-seed .intro-option-container {
+.wants-to-play-seed #intro-option-container {
 	opacity: 0;
 	pointer-events: none;
 }
-.wants-to-play-seed .seed-container {
+.wants-to-play-seed #seed-container {
 	opacity: 1;
 	pointer-events: all;
 }
@@ -193,7 +200,7 @@
 
 
 /* License plate */
-.license-plate {
+#license-plate {
 	--plate-height: 21rem;
 	position: relative;
 	justify-content: center;
@@ -204,26 +211,26 @@
 	filter: drop-shadow(0 var(--input-border-width) 0 var(--color5));
 }
 
-.plate-background {
+#plate-background {
 	position: absolute;
 	height: 100%;
 	width: 100%;
 	pointer-events: none;
 }
 
-.plate-number {
+#plate-number {
 	flex-direction: row;
 	align-items: center;
 	z-index: 9999;
 }
 
-.plate-number * { font-family: var(--font2); }
+#plate-number * { font-family: var(--font2); }
 /* .plate-chars1 { background: yellow; } */
-.plate-number svg { margin-bottom: calc(0.05 * var(--plate-height)); }
+/* #plate-divider { margin-bottom: calc(0.05 * var(--plate-height)); } */
 
 
 /* Submitting */
-.word-input {
+#word-input {
 	width: 100%;
 	text-align: center;
 	font-family: var(--font1);
@@ -236,7 +243,7 @@
 	color: var(--color6);
 	text-transform: uppercase;
 }
-.word-input::placeholder { color: var(--color2); }
+#word-input::placeholder { color: var(--color2); }
 
 #submit-btn {
 	display: flex;

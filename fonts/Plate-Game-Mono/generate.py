@@ -1,3 +1,5 @@
+# 113.267
+
 import fontforge
 import xml.etree.ElementTree as ET
 import tempfile
@@ -39,6 +41,10 @@ for i, path in enumerate(paths):
 			char = "!"
 		case "Apostrophe":
 			char = "'"
+		case "Hyphen Minus":
+			char = "-"
+		case "Bullet":
+			char = "•"
 		case _:
 			char = label
 	

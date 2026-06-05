@@ -155,7 +155,7 @@ body {
 }
 
 .all-wrapper {
-	padding: 6rem;
+	padding: var(--scroll-padding);
 	z-index: 10;
 	overflow-y: scroll;
 }
