@@ -1,20 +1,48 @@
-State plates that work: Alaska, Arizona, Arkansas, California, Colorado, Florida, Georgia, Hawaii, Indiana, Iowa, Kansas, Kentucky, Louisiana, Michigan, Minnesota, Mississippi, Nebraska, New Jersey, New Mexico, New York, North Carolina, North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, South Carolina, South Dakota, Texas, Vermont, Virginia, Washington, Wisconsin
+[x] Alaska
+	- Fonts: Berryfield Regular, Worn Gothic Black
+[ ] Arizona
+[ ] Arkansas
+[ ] California
+[ ] Colorado
+[x] Connecticut
+	- Fonts: LTC Goudy Oldstyle Pro Bold
+[ ] Florida
+[ ] Georgia
+[ ] Hawaii
+[ ] Indiana
+[ ] Iowa
+[ ] Kansas
+[ ] Kentucky
+[ ] Louisiana
+[ ] Michigan
+[ ] Minnesota
+[ ] Mississippi
+[ ] Nebraska
+[x] New Jersey
+	- Fonts: LTC Goudy Oldstyle Pro Bold, Franklin Gothic Bold
+[ ] New Mexico
+[ ] New York
+[ ] North Carolina
+[ ] North Dakota
+[ ] Ohio
+[ ] Oklahoma
+[ ] Oregon
+[x] Pennsylvania
+	- Fonts: Felbridge STD Bold
+[ ] South Carolina
+[ ] South Dakota
+[x] Tennessee
+	- Fonts: Helvetica Neue LT Std 63 Medium
+[x] Texas
+	- Fonts: Chubbet Distended W01 Bold
+[x] Vermont
+	- Fonts:
+[ ] Virginia
+[ ] Washington
+[x] West Virginia
+	- Fonts: Century Old Stype Std Bold
+[ ] Wisconsin
 
-How many states that work: 33
 
-
-
-White corner radius: 0.5in
-Design corner radius: 0.4in
-
-
-
-Individual plate info:
-	Pennsylvania:
-		Font: Felbridge STD Bold
-	Connecticut:
-		Font: LTC Goudy Oldstyle Pro Bold
-	New Jersey:
-		Font: LTC Goudy Oldstyle Pro Bold and Franklin Gothic Bold
-	West Virginia:
-		Font: Century Old Stype Std Bold
+Outer corner radius: 0.5in
+Inner corner radius: 0.4in
