@@ -7,7 +7,7 @@ $(document).ready(function() {
 		$("#intro-scroll-container").scrollTop($(document).height());
 	}
 
-	$("#logo").load("img/logo.svg", function() {
+	$("#logo").load("img/logo/logo.svg", function() {
 		$(this).contents().unwrap();
 	});
 });

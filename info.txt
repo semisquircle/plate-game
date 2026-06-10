@@ -8,13 +8,15 @@
 	- Fonts: LTC Goudy Oldstyle Pro Bold
 [ ] Florida
 [ ] Georgia
-[ ] Hawaii
+[x] Hawaii
+	- Fonts: Helvetica Neue LT Std 75 Bold
 [ ] Indiana
 [ ] Iowa
 [ ] Kansas
 [ ] Kentucky
 [ ] Louisiana
-[ ] Michigan
+[x] Michigan
+	- Fonts: Gotham Bold
 [ ] Minnesota
 [ ] Mississippi
 [ ] Nebraska

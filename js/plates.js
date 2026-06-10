@@ -30,6 +30,34 @@ plateList = [
 		}
 	},
 	{
+		state: "hi",
+		text: {
+			digits: 3,
+			reverse: false,
+			size: 0.5,
+			color: "#000000",
+			offset: 0.033
+		},
+		divider: {
+			svg: false,
+			width: 0.25
+		}
+	},
+	{
+		state: "mi",
+		text: {
+			digits: 4,
+			reverse: false,
+			size: 0.45,
+			color: "#02349a",
+			offset: 0.04
+		},
+		divider: {
+			svg: false,
+			width: 0.23,
+		}
+	},
+	{
 		state: "nj",
 		text: {
 			digits: 4,
